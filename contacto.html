@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="barra"></div>
+    <br>
+    <h1 class="titulo">Contacto</h1>
+    <div class="contenido">
+        <h3>· Si necesita contactar con nosotros para añadir sus imágenes o lo que sea contactenos a <a href="mailto:pro.fotografs.o@outlook.es?subject=Web&body=Aquí%20tu%20mensaje.">pro.fotografs.o@outlook.es</a>.</h3>
+    </div>
+
+    <script>
+        const barra = document.getElementById('barra');
+        fetch('barra.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('barra').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar la barra:', error));
+    </script>
+</body>
+</html>

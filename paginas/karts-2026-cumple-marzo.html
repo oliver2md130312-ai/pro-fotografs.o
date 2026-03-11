@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karts 2026 - Oliver</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        #todo-el-cumple { display: none; }
+        .error-acceso { text-align: center; margin-top: 100px; color: #666; }
+    </style>
+</head>
+<body>
+    <div id="barra"></div>
+
+    <div id="mensaje-error" class="error-acceso" style="display: none;">
+        <h1>🔒 Acceso Denegado</h1>
+        <p>No tienes permiso para estar aquí. Por favor, introduce el código en el Inicio.</p>
+        <a href="../index.html">Volver al Inicio</a>
+    </div>
+
+    <div id="todo-el-cumple">
+        <h1 class="titulo">Cumpleaños de Oliver</h1>
+        <div class="contenido">
+            <h3 class="subtitulo">Aquí encontrarás las fotos del cumpleaños</h3>
+            <div class="galeria">
+                <div class="visor">
+                    <img id="imagenPrincipal" src="../imagenes/Temporal.png" alt="Visor">
+                </div>
+                <div class="miniaturas">
+                    <img src="../imagenes/Temporal.png" onclick="seleccionar(this)" class="thumb activa">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    // --- LÓGICA DE SEGURIDAD SIMPLIFICADA ---
+function verificarAcceso() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenRecibido = urlParams.get('token');
+
+    // LISTA DE TOKENS PERMITIDOS PARA ESTA PÁGINA
+    const tokensValidos = [
+        "gf5cl1frzq"/*Oliver*/,
+        "b6u734g137"/*Olivia*/,
+        "z033kaxa6e"/*Marc*/,
+        "3uj4mpgoxy"/*Carlos*/,
+        "bt7un9caqt"/*David*/,
+        "6zhvns64u5"/*Mario*/,
+        "6b9w8qgdro"/*Guillem*/,
+        "wimgi44ijh"/*Javier*/,
+        "n4g9sw5ajn"/*Iker*/,
+        "fjzbmi5ssd"/*Elba*/,
+    ];
+
+    console.log("Token recibido:", tokenRecibido);
+
+    // .includes() comprueba si el token recibido está dentro de nuestra lista
+    if (tokensValidos.includes(tokenRecibido)) {
+        document.getElementById('todo-el-cumple').style.display = 'block';
+        document.getElementById('mensaje-error').style.display = 'none';
+        console.log("Acceso concedido con token: " + tokenRecibido);
+    } else {
+        document.getElementById('mensaje-error').style.display = 'block';
+        document.getElementById('todo-el-cumple').style.display = 'none';
+        console.error("Token no válido.");
+    }
+}
+
+    // Ejecutamos la verificación nada más cargar la página
+    verificarAcceso();
+
+    // --- TU LÓGICA DE LA GALERÍA ---
+    function seleccionar(elemento) {
+        document.getElementById('imagenPrincipal').src = elemento.src;
+        const todas = document.querySelectorAll('.thumb');
+        todas.forEach(t => t.classList.remove('activa'));
+        elemento.classList.add('activa');
+    }
+
+    // Cargar la barra (al estar en una carpeta, usamos ../ para salir a la principal)
+    const barra = document.getElementById('barra');
+    fetch('barra.html')
+        .then(response => response.text())
+        .then(data => {
+            barra.innerHTML = data;
+        })
+        .catch(error => console.error('Error cargando barra.html:', error));
+</script>
+</body>
+</html>

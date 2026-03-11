@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Pro-Fotografs.o</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="barra"></div>
+    <h1 class="titulo">Bienvenido a nuestra web de fotografías.</h1>
+    
+    <div class="contenido" style="text-align: center;">
+        <h3>· Esta es una galería de fotos privada.</h3>
+        <p>Introduce tu código de acceso para ver tus fotos:</p>
+        
+        <input type="password" id="inputToken" placeholder="Código secreto" 
+               style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; width: 200px; margin-bottom: 10px;">
+        <br>
+        <button onclick="irAGaleria()" 
+                style="padding: 10px 25px; cursor: pointer; background-color: #333; color: white; border: none; border-radius: 8px; font-weight: bold;">
+                Ver mis fotos
+        </button>
+        
+        <p id="errorLog" style="color: #ff4d4d; display: none; margin-top: 15px; font-weight: bold;">⚠️ Código incorrecto o no existe.</p>
+    </div>
+
+    <footer>
+        <p style="text-align: center; margin-top: 50px;">&copy; 2026 Galería de Fotografías. Todos los derechos reservados.</p>
+    </footer>
+
+<script>
+    function irAGaleria() {
+        // 1. Obtenemos el texto y lo limpiamos
+        const pass = document.getElementById('inputToken').value.trim().toLowerCase();
+        
+        if (!pass) {
+            alert("Por favor, escribe un código.");
+            return;
+        }
+
+        // 2. Definimos las claves y las rutas
+        // ¡OJO! Revisa que el nombre del archivo .html sea EXACTAMENTE igual
+        const accesos = {
+            "gf5cl1frzq": "paginas/karts-2026-cumple-marzo.html"/*Oliver*/,
+            "b6u734g137": "paginas/karts-2026-cumple-marzo.html"/*Olivia*/,
+            "z033kaxa6e": "paginas/karts-2026-cumple-marzo.html"/*Marc*/,
+            "3uj4mpgoxy": "paginas/karts-2026-cumple-marzo.html"/*Carlos*/,
+            "bt7un9caqt": "paginas/karts-2026-cumple-marzo.html"/*David*/,
+            "6zhvns64u5": "paginas/karts-2026-cumple-marzo.html"/*Mario*/,
+            "6b9w8qgdro": "paginas/karts-2026-cumple-marzo.html"/*Guillem*/,
+            "wimgi44ijh": "paginas/karts-2026-cumple-marzo.html"/*Javier*/,
+            "n4g9sw5ajn": "paginas/karts-2026-cumple-marzo.html"/*Iker*/,
+            "fjzbmi5ssd": "paginas/karts-2026-cumple-marzo.html"/*Elba*/
+
+        };
+
+        if (accesos[pass]) {
+            // 3. Intentamos ir a la página
+            const destino = accesos[pass] + "?token=" + pass;
+            console.log("Redirigiendo a: " + destino);
+            window.location.href = destino;
+        } else {
+            // Si el código no está en la lista
+            document.getElementById('errorLog').style.display = 'block';
+            console.error("Código no reconocido: " + pass);
+        }
+    }
+
+    // Código para la barra (se mantiene igual)
+    fetch('barra.html')
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('barra').innerHTML = data;
+        })
+        .catch(err => console.error("No se pudo cargar la barra.html:", err));
+</script>
+</body>
+</html>
