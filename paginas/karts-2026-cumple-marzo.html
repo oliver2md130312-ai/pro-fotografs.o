@@ -82,7 +82,7 @@ function verificarAcceso() {
 
     // Cargar la barra (al estar en una carpeta, usamos ../ para salir a la principal)
     const barra = document.getElementById('barra');
-    fetch('/barra.html')
+    fetch('../barra.html')
         .then(response => response.text())
         .then(data => {
             barra.innerHTML = data;
@@ -90,4 +90,5 @@ function verificarAcceso() {
         .catch(error => console.error('Error cargando barra.html:', error));
 </script>
 </body>
+
 </html>
