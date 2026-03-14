@@ -122,3 +122,63 @@ body{
     color: #2563eb;
     text-decoration: underline;
 }
+
+.terminos{
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    padding: 25px;
+    border-radius: 15px;
+    /* Blanco roto / Hueso para no deslumbrar */
+    background-color: #f9fafb;
+    margin: 25px auto;
+    max-width: 850px;
+    color: #374151;
+    border: 1px solid #9ca3af;
+}
+
+.terminos a{
+    padding: 10px;
+    background-color:  rgba(55, 65, 81, 0.5);
+    border-radius: 10px;
+    color: white;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.terminos h3 a{
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: none;
+    background-color: transparent;
+    color: blue;
+    text-decoration: underline;
+}
+
+.descargar {
+    width: 150px;
+    display: block;
+    
+    /* EL TRUCO: */
+    position: relative; 
+    left: 50%;
+    transform: translateX(-50%); 
+
+    text-align: center;
+    padding: 5px;
+    background-color: #111827;
+    border-radius: 10px;
+}
+
+.descargar a{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #2563eb;
+    font-size: 15px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:#111827;
+}
+
+.descargar h4{
+    color: #9ca3af;
+}

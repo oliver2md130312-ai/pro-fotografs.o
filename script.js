@@ -19,5 +19,4 @@ function validarRespuesta(num, bot) {
         sessionStorage.setItem("verificado", "si");
         alert("¡Verificación exitosa!");
     }
-
 }

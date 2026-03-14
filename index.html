@@ -10,6 +10,11 @@
 <body>
     <div id="barra"></div>
     <h1 class="titulo">Bienvenido a nuestra web de fotografías.</h1>
+    <div id="terminos" class="terminos">
+        <h3>¿Aceptas los <a href="imagenes/terminos_pro-fotografs-o.pdf" target="_blank">terminos y condiciones</a>?</h3>
+        <a href="#" onclick="seguir();">Sí</a>
+        <a href="#" onclick="ocultar();">No</a>
+    </div>
     
     <div class="contenido" style="text-align: center;">
         <h3>· Esta es una galería de fotos privada.</h3>
@@ -31,6 +36,39 @@
     </footer>
     <script src="script.js"></script>
 <script>
+    
+    function seguir() {
+        localStorage.setItem("visitado", "si")
+        location.reload();
+    }
+
+    function ocultar() {
+        document.body.innerHTML = `
+            <div style="text-align:center; margin-top:100px; font-family:sans-serif;">
+                <h1 style="color:red; font-size:50px;">⚠️ ERROR CRÍTICO ⚠️</h1>
+                <p>Se ha detectado un acceso no autorizado o los términos no han sido aceptados.</p>
+                <small>Código de error: 0x000452 - Access_Denied</small>
+            </div>
+        `;
+        // Detenemos la ejecución de cualquier otro script
+        throw new Error("Acceso denegado por el sistema.");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const doc = document.getElementById("terminos");
+        const estado = localStorage.getItem('visitado');
+
+        if (estado === 'si') {
+            // Si el valor es "si", ocultamos el elemento
+            doc.style.display = "none";
+        } else {
+            // Si es "no", es null o cualquier otra cosa, lo mostramos
+            doc.style.display = "block"; 
+        }
+    });
+
+
+
     function irAGaleria() {
         // 1. Obtenemos el texto y lo limpiamos
         const pass = document.getElementById('inputToken').value.trim().toLowerCase();
@@ -52,7 +90,9 @@
             "6b9w8qgdro": "paginas/karts-2026-cumple-marzo.html"/*Guillem*/,
             "wimgi44ijh": "paginas/karts-2026-cumple-marzo.html"/*Javier*/,
             "n4g9sw5ajn": "paginas/karts-2026-cumple-marzo.html"/*Iker*/,
-            "fjzbmi5ssd": "paginas/karts-2026-cumple-marzo.html"/*Elba*/
+            "fjzbmi5ssd": "paginas/karts-2026-cumple-marzo.html"/*Aitor*/,
+            "y6x7o4d7e2": "paginas/karts-2026-cumple-marzo.html"/*Esther*/,
+            "h9m6g6e2p5": "paginas/karts-2026-cumple-marzo.html"/*Mario2*/
 
         };
 

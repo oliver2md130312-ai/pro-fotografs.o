@@ -1,3 +1,4 @@
+// 1. Miramos si en ESTA SESIÓN (pestaña) ya se verificó
 if (sessionStorage.getItem("verificado") === "si") {
     console.log("Ya verificado en esta pestaña.");
 } else {
@@ -12,11 +13,10 @@ if (sessionStorage.getItem("verificado") === "si") {
 function validarRespuesta(num, bot) {
     if (bot !== num.toString()) {
         // Si falla o cancela el prompt, al bot.html
-        window.location.href = "../bot.html";
+        window.location.href = "bot.html";
     } else {
         // SI ACERTA: Guardamos solo para esta pestaña
         sessionStorage.setItem("verificado", "si");
         alert("¡Verificación exitosa!");
     }
-
 }
